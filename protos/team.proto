@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package team;
+
+service TeamService {
+  rpc CreateTeam (CreateTeamRequest) returns (TeamResponse);
+  rpc AddMember (AddMemberRequest) returns (MemberResponse);
+  rpc GetTeams (GetTeamsRequest) returns (TeamsResponse);
+}
+
+message CreateTeamRequest {
+  string name = 1;
+}
+
+message AddMemberRequest {
+  string name = 1;
+  int32 teamId = 2;
+}
+
+message GetTeamsRequest {}
+
+message TeamResponse {
+  Team team = 1;
+}
+
+message MemberResponse {
+  Member member = 1;
+}
+
+message TeamsResponse {
+  repeated Team teams = 1;
+}
+
+message Team {
+  int32 id = 1;
+  string name = 2;
+  repeated Member members = 3;
+}
+
+message Member {
+  int32 id = 1;
+  string name = 2;
+}
